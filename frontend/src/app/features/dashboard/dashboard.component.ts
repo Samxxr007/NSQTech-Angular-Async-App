@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxEchartsDirective } from 'ngx-echarts';
 import { EChartsOption } from 'echarts';
 import { DashboardStatsService } from '../../core/services/dashboard-stats.service';
 import { CasesService } from '../../core/services/cases.service';
@@ -11,7 +11,7 @@ import { animate, style, transition, trigger, query, stagger } from '@angular/an
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NgxEchartsModule],
+  imports: [CommonModule, NgxEchartsDirective],
   template: `
     <div class="dashboard-container">
       
