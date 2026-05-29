@@ -1,0 +1,294 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@mploychek.com",
+      "password": "Admin@123",
+      "role": "admin",
+      "name": "Admin User",
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "email": "user@mploychek.com",
+      "password": "User@123",
+      "role": "user",
+      "name": "General User",
+      "isActive": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "1",
+      "employeeName": "John Doe",
+      "company": "Infosys",
+      "verificationType": "Employment Check",
+      "status": "Verified",
+      "riskLevel": "Low"
+    },
+    {
+      "id": "2",
+      "employeeName": "Sarah Smith",
+      "company": "TCS",
+      "verificationType": "Education Check",
+      "status": "Pending",
+      "riskLevel": "Medium"
+    }
+  ],
+  "audit": [
+    {
+      "id": "3a253e3e-363b-44c5-b9ed-b92f90f92992",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:29:17.448Z"
+    },
+    {
+      "id": "88ef4155-c67d-4260-b5bb-e94584fcc6a0",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:31:16.766Z"
+    },
+    {
+      "id": "fad3cb3f-3b2a-4f17-9e93-4524a68434cf",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:31:23.777Z"
+    },
+    {
+      "id": "c5506d2f-a872-4c96-86d3-3257b588fc4e",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:31:28.015Z"
+    },
+    {
+      "id": "eacbf457-734e-4d5f-b4ad-c73eb0172bd7",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:51:26.475Z"
+    },
+    {
+      "id": "480c450c-6d54-4327-a1ff-a48a8f64bfe2",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:51:48.335Z"
+    },
+    {
+      "id": "f5ecb870-84c6-47bd-8c26-7b570ce441c1",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:52:33.548Z"
+    },
+    {
+      "id": "985e0ae9-2224-42d9-87a9-8eab562c3bd2",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:52:45.645Z"
+    },
+    {
+      "id": "b747e681-bbfc-4bbe-8595-3f7d25177eb2",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T08:55:51.242Z"
+    },
+    {
+      "id": "16f162aa-0c16-4a95-a076-75c5dbdefec1",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T10:59:50.538Z"
+    },
+    {
+      "id": "15c451f4-e7bd-4ebb-a726-f9dc6459413c",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:00:03.773Z"
+    },
+    {
+      "id": "406f061d-2f85-4c13-88f5-773928dee9b4",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:00:08.272Z"
+    },
+    {
+      "id": "c7f093c0-3bd1-45c5-b25d-15bb2038403b",
+      "userId": "1",
+      "userEmail": "admin@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:00:26.074Z"
+    },
+    {
+      "id": "9603aa64-9fcf-4dc8-8d6f-e3cf84bb9d05",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:00:46.809Z"
+    },
+    {
+      "id": "93b9cf7b-c8a5-4577-80d4-54496237cb68",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:00:54.507Z"
+    },
+    {
+      "id": "718ab7ee-f4a4-48c6-9d33-34c8341e2207",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:14:02.410Z"
+    },
+    {
+      "id": "83dc293f-c3c0-45fc-b90a-a515d7ec64aa",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:14:10.046Z"
+    },
+    {
+      "id": "de7a2dfc-3be8-4a41-8f41-248ce5998a46",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:14:40.226Z"
+    },
+    {
+      "id": "379e2ed1-2f48-4d79-90c5-095b4b41431b",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:15:15.163Z"
+    },
+    {
+      "id": "63b405bf-d96c-4665-94e6-15e9b5087b03",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:15:30.865Z"
+    },
+    {
+      "id": "dd3e5291-5525-40b9-b4f5-a8641e01c45f",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:15:32.280Z"
+    },
+    {
+      "id": "f9e01e69-f084-4168-88ac-615fd942ed5d",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:15:36.879Z"
+    },
+    {
+      "id": "4f14fb54-44f8-4b6c-b7f0-3528cbd1402a",
+      "userId": "2",
+      "userEmail": "user@mploychek.com",
+      "action": "ViewCases",
+      "resource": "Case",
+      "resourceId": null,
+      "details": "Viewed cases list (page 1, 2 total)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-05-27T11:15:47.439Z"
+    }
+  ],
+  "notifications": []
+}
