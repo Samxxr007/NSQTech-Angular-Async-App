@@ -29,6 +29,29 @@ export class DatabaseService implements OnModuleInit {
     this.db
       .defaults({ users: [], cases: [], audit: [], notifications: [] })
       .write();
+
+    if (this.db.get('users').value().length === 0) {
+      this.db.get('users').push(
+        {
+          id: '1',
+          email: 'admin@mploychek.com',
+          password: 'Admin@123',
+          role: 'admin',
+          name: 'Admin User',
+          isActive: true
+        },
+        {
+          id: '2',
+          email: 'user@mploychek.com',
+          password: 'User@123',
+          role: 'user',
+          name: 'Verification Officer',
+          isActive: true
+        }
+      ).write();
+      this.logger.log('Default users seeded');
+    }
+
     this.logger.log(`Database initialized at ${this.configService.dbPath}`);
   }
 
