@@ -4,7 +4,6 @@ import { DatabaseService } from '../database/database.service';
 import { ConfigService } from '../config/config.service';
 import { User, SafeUser } from '../models/user.model';
 import { LoginDto } from './dto/login.dto';
-import * as bcrypt from 'bcryptjs';
 
 interface TokenPayload {
   sub: string;
@@ -42,9 +41,8 @@ export class AuthService {
       throw new UnauthorizedException('Account is deactivated. Contact administrator.');
     }
 
-    const isPasswordValid = await bcrypt.compare(loginDto.password, user.password);
-    if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid email or password');
+    if (user.password !== loginDto.password) {
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     const { password: _password, ...safeUser } = user;
