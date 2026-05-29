@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgChartsModule } from 'ng2-charts';
-import { ChartConfiguration } from 'chart.js';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { EChartsOption } from 'echarts';
 import { DashboardStatsService } from '../../core/services/dashboard-stats.service';
 import { CasesService } from '../../core/services/cases.service';
 import { AuditService } from '../../core/services/audit.service';
@@ -11,7 +11,7 @@ import { animate, style, transition, trigger, query, stagger } from '@angular/an
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NgChartsModule],
+  imports: [CommonModule, NgxEchartsModule],
   template: `
     <div class="dashboard-container">
       
@@ -70,11 +70,7 @@ import { animate, style, transition, trigger, query, stagger } from '@angular/an
           <div class="chart-wrapper line-chart">
             @if (loading) { <div class="skeleton" style="width: 100%; height: 280px;"></div> }
             @else {
-              <canvas baseChart
-                [data]="lineChartData"
-                [options]="lineOptions"
-                [type]="'line'">
-              </canvas>
+              <div echarts [options]="lineChartOptions" class="echarts-container"></div>
             }
           </div>
         </div>
@@ -87,11 +83,7 @@ import { animate, style, transition, trigger, query, stagger } from '@angular/an
           <div class="chart-wrapper donut-chart">
             @if (loading) { <div class="skeleton" style="width: 100%; height: 280px;"></div> }
             @else {
-              <canvas baseChart
-                [data]="statusChartData"
-                [options]="donutOptions"
-                [type]="'doughnut'">
-              </canvas>
+              <div echarts [options]="donutChartOptions" class="echarts-container"></div>
             }
           </div>
         </div>
@@ -190,33 +182,8 @@ export class DashboardComponent implements OnInit {
     { title: 'Critical Risk Alerts', value: 0, svgIcon: '⚠️', colorClass: 'danger', trend: -18.5, progress: 15 },
   ];
 
-  donutOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'right', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle', font: { size: 12, family: 'Inter' } } }
-    }
-  } as any;
-
-  lineOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      legend: { display: true, position: 'top', labels: { usePointStyle: true, pointStyle: 'circle', padding: 20, font: { size: 12, family: 'Inter' } } },
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 11, family: 'Inter' } } },
-      y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11, family: 'Inter' } } },
-    },
-    elements: {
-      line: { tension: 0.4, borderWidth: 3 },
-      point: { radius: 4, hoverRadius: 6 },
-    }
-  };
-
-  statusChartData: any = { labels: [], datasets: [] };
-  lineChartData: any = { labels: [], datasets: [] };
+  donutChartOptions: EChartsOption = {};
+  lineChartOptions: EChartsOption = {};
   
   recentRequests: any[] = [];
   auditLogs: any[] = [];
@@ -237,33 +204,105 @@ export class DashboardComponent implements OnInit {
         this.statsCards[3].value = (stats.byRiskLevel['Critical'] || 0) + (stats.byRiskLevel['High'] || 0);
 
         // Status chart
-        this.statusChartData = {
-          labels: Object.keys(stats.byStatus),
-          datasets: [{
-            data: Object.values(stats.byStatus),
-            backgroundColor: this.getChartColors(Object.keys(stats.byStatus)),
-            borderWidth: 0,
-            hoverOffset: 8,
+        this.donutChartOptions = {
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {c} ({d}%)'
+          },
+          legend: {
+            orient: 'vertical',
+            right: 10,
+            top: 'center',
+            textStyle: { fontSize: 12, fontFamily: 'Inter' }
+          },
+          series: [{
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 8,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: { show: false },
+            emphasis: {
+              label: { show: true, fontSize: 14, fontWeight: 'bold' }
+            },
+            data: Object.keys(stats.byStatus).map((key, index) => ({
+              value: stats.byStatus[key],
+              name: key,
+              itemStyle: { color: this.getChartColors(Object.keys(stats.byStatus))[index] }
+            }))
           }]
         };
 
         // Monthly growth line chart
-        this.lineChartData = {
-          labels: stats.monthlyGrowth.labels,
-          datasets: [
+        this.lineChartOptions = {
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'cross' }
+          },
+          legend: {
+            data: ['Created', 'Completed'],
+            top: 0,
+            textStyle: { fontSize: 12, fontFamily: 'Inter' }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: stats.monthlyGrowth.labels,
+            axisLine: { lineStyle: { color: '#e5e7eb' } },
+            axisLabel: { fontSize: 11, fontFamily: 'Inter' }
+          },
+          yAxis: {
+            type: 'value',
+            axisLine: { show: false },
+            axisTick: { show: false },
+            splitLine: { lineStyle: { color: 'rgba(0,0,0,0.05)' } },
+            axisLabel: { fontSize: 11, fontFamily: 'Inter' }
+          },
+          series: [
             {
-              label: 'Created',
+              name: 'Created',
+              type: 'line',
+              smooth: true,
               data: stats.monthlyGrowth.values,
-              borderColor: '#4f46e5',
-              backgroundColor: 'rgba(79, 70, 229, 0.08)',
-              fill: true,
+              itemStyle: { color: '#4f46e5' },
+              areaStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0, y: 0, x2: 0, y2: 1,
+                  colorStops: [
+                    { offset: 0, color: 'rgba(79, 70, 229, 0.3)' },
+                    { offset: 1, color: 'rgba(79, 70, 229, 0.05)' }
+                  ]
+                }
+              },
+              lineStyle: { width: 3 }
             },
             {
-              label: 'Completed',
+              name: 'Completed',
+              type: 'line',
+              smooth: true,
               data: stats.monthlyGrowth.completedValues,
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.08)',
-              fill: true,
+              itemStyle: { color: '#10b981' },
+              areaStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0, y: 0, x2: 0, y2: 1,
+                  colorStops: [
+                    { offset: 0, color: 'rgba(16, 185, 129, 0.3)' },
+                    { offset: 1, color: 'rgba(16, 185, 129, 0.05)' }
+                  ]
+                }
+              },
+              lineStyle: { width: 3 }
             }
           ]
         };
