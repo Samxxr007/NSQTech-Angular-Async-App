@@ -9,9 +9,7 @@ async function bootstrap() {
 
   // Enable CORS for Angular frontend
   app.enableCors({
-    origin: 'http://localhost:4200',
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: true,
     credentials: true,
   });
 
@@ -42,11 +40,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  const port = 3000;
+  const port = process.env.PORT || 3000;
   await app.listen(port);
-
-  logger.log(`🚀 MPloyChek API running on http://localhost:${port}`);
-  logger.log(`📚 Swagger docs at http://localhost:${port}/api/docs`);
+  Logger.log(`🚀 MPloyChek API running on port ${port}`);
+  Logger.log(`📚 Swagger docs available at /api/docs`);
 }
 
 bootstrap();
